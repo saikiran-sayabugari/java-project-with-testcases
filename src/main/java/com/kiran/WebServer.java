@@ -3,20 +3,21 @@ package com.kiran;
 import com.google.gson.Gson;
 import com.kiran.controller.ItemController;
 import com.kiran.repository.ItemRepository;
-import spark.Route;
 import spark.Spark;
 
 public class WebServer {
-
     public static void main(String[] args) {
-        // Set up Spark server
+        // Create instances of dependencies
+        ItemRepository itemRepository = new ItemRepository();
+        Gson gson = new Gson();
+
+        // Create ItemController with dependencies
+        ItemController itemController = new ItemController(itemRepository, gson);
+
+        // Set up Spark routes
         Spark.port(8080);
 
-        // Initialize data repository and controller
-        ItemRepository itemRepository = new ItemRepository();
-        ItemController itemController = new ItemController(itemRepository);
-
-        // Set up RESTful endpoints
+        // Define your routes using ItemController
         Spark.get("/items", itemController.getAllItems);
         Spark.get("/items/:id", itemController.getItemById);
         Spark.post("/items", itemController.addItem);
@@ -24,4 +25,3 @@ public class WebServer {
         Spark.delete("/items/:id", itemController.deleteItem);
     }
 }
-
