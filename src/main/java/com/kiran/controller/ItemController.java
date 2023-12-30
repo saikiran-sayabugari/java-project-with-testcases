@@ -3,6 +3,8 @@ package com.kiran.controller;
 import com.google.gson.Gson;
 import com.kiran.model.Item;
 import com.kiran.repository.ItemRepository;
+import spark.Request;
+import spark.Response;
 import spark.Route;
 
 import java.util.List;
@@ -34,5 +36,32 @@ public class ItemController {
     };
 
     public Route addItem = (request, response) -> {
-        Item newItem = gson.fromJson(request.body(), Item
+        Item newItem = gson.fromJson(request.body(), Item.class);
+        Item addedItem = itemRepository.addItem(newItem);
+        response.status(201);
+        return gson.toJson(addedItem);
+    };
 
+    public Route updateItem = (request, response) -> {
+        int itemId = Integer.parseInt(request.params(":id"));
+        Item updatedItem = gson.fromJson(request.body(), Item.class);
+        Item result = itemRepository.updateItem(itemId, updatedItem);
+        if (result != null) {
+            return gson.toJson(result);
+        } else {
+            response.status(404);
+            return "Item not found";
+        }
+    };
+
+    public Route deleteItem = (request, response) -> {
+        int itemId = Integer.parseInt(request.params(":id"));
+        if (itemRepository.deleteItem(itemId)) {
+            response.status(204);
+            return "";
+        } else {
+            response.status(404);
+            return "Item not found";
+        }
+    };
+}
