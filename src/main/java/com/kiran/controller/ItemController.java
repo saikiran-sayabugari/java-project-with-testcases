@@ -3,8 +3,6 @@ package com.kiran.controller;
 import com.google.gson.Gson;
 import com.kiran.model.Item;
 import com.kiran.repository.ItemRepository;
-import spark.Request;
-import spark.Response;
 import spark.Route;
 
 import java.util.List;
