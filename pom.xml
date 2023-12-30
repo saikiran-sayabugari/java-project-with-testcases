@@ -7,9 +7,29 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
-        <!-- Add your dependencies here -->
+        <!-- Gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.9</version>
+        </dependency>
+
+        <!-- Spark Java -->
+        <dependency>
+            <groupId>com.sparkjava</groupId>
+            <artifactId>spark-core</artifactId>
+            <version>2.9.3</version>
+        </dependency>
+
+        <!-- SLF4J API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.32</version>
+        </dependency>
     </dependencies>
 
+    <!-- Maven Compiler Plugin -->
     <build>
         <plugins>
             <!-- Maven Compiler Plugin -->
@@ -64,5 +84,5 @@
             </plugin>
         </plugins>
     </build>
-</project>
 
+</project>
