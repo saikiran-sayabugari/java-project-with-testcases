@@ -1,7 +1,6 @@
 package com.kiran.controller;
 
 import com.google.gson.Gson;
-import com.kiran.model.Item;
 import com.kiran.repository.ItemRepository;
 import spark.Route;
 
@@ -12,9 +11,9 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final Gson gson;
 
-    public ItemController(ItemRepository itemRepository) {
+    public ItemController(ItemRepository itemRepository, Gson gson) {
         this.itemRepository = itemRepository;
-        this.gson = new Gson();
+        this.gson = gson;
     }
 
     public Route getAllItems = (request, response) -> {
