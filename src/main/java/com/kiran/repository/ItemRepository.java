@@ -3,42 +3,38 @@ package com.kiran.repository;
 import com.kiran.model.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ItemRepository {
 
-    private final Map<Integer, Item> items = new HashMap<>();
-    private int nextId = 1;
+    private final List<Item> items;
+
+    public ItemRepository() {
+        this.items = new ArrayList<>();
+    }
 
     public List<Item> getAllItems() {
-        return new ArrayList<>(items.values());
+        return items;
     }
 
     public Item getItemById(int id) {
-        return items.get(id);
+        // Implement your logic to retrieve an item by ID
+        return null;
     }
 
     public Item addItem(Item item) {
-        item.setId(nextId);
-        items.put(nextId, item);
-        nextId++;
+        // Implement your logic to add an item
+        items.add(item);
         return item;
     }
 
     public Item updateItem(int id, Item updatedItem) {
-        if (items.containsKey(id)) {
-            updatedItem.setId(id);
-            items.put(id, updatedItem);
-            return updatedItem;
-        } else {
-            return null;
-        }
+        // Implement your logic to update an item
+        return null;
     }
 
     public boolean deleteItem(int id) {
-        return items.remove(id) != null;
+        // Implement your logic to delete an item
+        return false;
     }
 }
-
